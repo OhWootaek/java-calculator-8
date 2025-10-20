@@ -1,6 +1,7 @@
 package calculator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -29,6 +30,22 @@ public class Application {
             input = input.replace(delim,",");
         }
 
-        System.out.println(input);
+        // 올바른 입력이 아닐 경우 IllegalArgumentException 발생 후 종료
+        ArrayList<Integer> numbers = new ArrayList<>();
+        ArrayList<String> splitInput = new ArrayList<>(List.of(input.split(",")));
+        try {
+            for (String s: splitInput) {
+                if (s.trim().isEmpty()) continue;
+                int number = Integer.parseInt(s);
+                if (number < 0) throw new IllegalArgumentException();
+                numbers.add(number);
+            }
+        } catch(Exception e) {
+            throw new IllegalArgumentException();
+        }
+
+        for (int i = 0; i < numbers.size(); i++) {
+            System.out.println(numbers.get(i));
+        }
     }
 }
