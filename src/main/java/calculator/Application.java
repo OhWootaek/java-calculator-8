@@ -23,5 +23,12 @@ public class Application {
             }
             input = parts[1];
         }
+
+        // delimiter안에 있는 모든 구분자들을 ","으로 통일해서 변경
+        for (String delim: delimiter){
+            input = input.replace(delim,",");
+        }
+
+        System.out.println(input);
     }
 }
